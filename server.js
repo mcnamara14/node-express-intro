@@ -15,7 +15,6 @@ app.use(urlLogger, timeLogger);
 app.use('/', express.static('public'));
 app.use('/sunsets', express.static('public/sunsets'));
 
-
 app.get('/', (request, response) => {
   response.send('hello world');
 });
@@ -32,3 +31,7 @@ app.get('/sunsets', (request, response) => {
 app.listen(3000, () => {
   console.log('Express intro running on localhost:3000');
 });
+
+app.use(function (request, response, next) {
+  response.status(404).sendFile(__dirname + '/public/404/');
+})
